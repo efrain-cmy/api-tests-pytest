@@ -5,20 +5,20 @@ from src.first_funtion import descontar_apuesta
 
 
 @pytest.mark.parametrize(
-    "saldo, monto, expected",
+    "saldo, monto, esperado",
     [
         (100, 30, 70),
         (50, 20, 30),
         (80, 80, 0),
     ]
 )
-def test_descontar_apuesta_deja_saldo_esperado(saldo, monto, expected):
+def test_descontar_apuesta_deja_saldo_esperado(saldo, monto, esperado):
     # Act: hacer la acción que quiero probar
     nuevo_saldo = descontar_apuesta(saldo, monto)
     #assert: verificar que el resultado es el esperado
-    assert nuevo_saldo == expected
+    assert nuevo_saldo == esperado
 
-def test_descontar_apuesta_raises_value_error():
+def test_descontar_apuesta_rechaza_saldo_insuficiente():
     saldo = 50
     monto = 60
 

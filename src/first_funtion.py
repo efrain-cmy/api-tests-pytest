@@ -3,3 +3,4 @@ def descontar_apuesta(saldo, monto):
         raise ValueError("No hay suficiente saldo para realizar la apuesta.")
 
     return saldo - monto
+
