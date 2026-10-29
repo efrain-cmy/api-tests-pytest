@@ -3,7 +3,7 @@ import pytest
 from src.first_funtion import descontar_apuesta
 
 
-@pytest.mark.regression
+
 @pytest.mark.parametrize(
     "saldo, monto, esperado",
     [
@@ -12,6 +12,7 @@ from src.first_funtion import descontar_apuesta
         (80, 80, 0),
     ]
 )
+@pytest.mark.regression
 def test_descontar_apuesta_deja_saldo_esperado(saldo, monto, esperado):
     # Act: hacer la acción que quiero probar
     nuevo_saldo = descontar_apuesta(saldo, monto)
