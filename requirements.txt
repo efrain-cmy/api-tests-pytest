@@ -1,2 +1,4 @@
 requests
 jsonschema
+pytest-html
+pytest

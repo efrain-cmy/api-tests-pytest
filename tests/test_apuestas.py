@@ -27,21 +27,35 @@ def test_enviar_apuesta_devuelve_el_monto_enviado(url_apuestas,monto, api):
     ticket = respuesta.json()
     assert ticket["monto"] == monto
 
-@pytest.mark.parametrize("ticket_Id", [1, 2, 3, 50, 100])
+@pytest.mark.parametrize("ticket_id", [1, 2, 3, 50, 100])
 @pytest.mark.smoke
-def test_ticket_existente_devuelve_200_y_el_id(url_apuestas, api, ticket_Id):
+def test_ticket_existente_devuelve_200_y_el_id(url_apuestas, api, ticket_id):
     #act-mandar una petición get
-    respuesta = api.get(url_apuestas + f"{ticket_Id}", timeout=10)
+    respuesta = api.get(url_apuestas + f"{ticket_id}", timeout=10)
     #assert-validar status, y id
     assert respuesta.status_code == 200
     ticket = respuesta.json()
     validate(ticket, TICKET_GUARDADO_SCHEMA )
-    assert ticket["id"] == ticket_Id
+    assert ticket["id"] == ticket_id
 
-@pytest.mark.parametrize("ticket_Id", [0, 9999])
+@pytest.mark.parametrize("ticket_id", [0, 9999])
 @pytest.mark.regression
-def test_ticket_inexistente_devuelve_404(url_apuestas, api, ticket_Id):
+def test_ticket_inexistente_devuelve_404(url_apuestas, api, ticket_id):
     #act-mandar una petición get
-    respuesta = api.get(url_apuestas + f"{ticket_Id}", timeout=10)
+    respuesta = api.get(url_apuestas + f"{ticket_id}", timeout=10)
     #assert-validar status
     assert respuesta.status_code == 404
+
+@pytest.mark.smoke
+def test_modificar_apuesta_devuelve_200_y_el_monto_nuevo(url_apuestas, api):
+    apuesta = crear_apuesta(100)
+    respuesta = api.put(url_apuestas + "1", json=apuesta, timeout=10)
+    assert respuesta.status_code == 200
+    ticket = respuesta.json()
+    validate(ticket, TICKET_SCHEMA)
+    assert ticket["monto"] == apuesta["monto"]
+
+@pytest.mark.smoke    
+def test_elimar_apuesta_devuelve_200(url_apuestas, api):
+    respuesta = api.delete(url_apuestas + "1", timeout = 10)
+    assert respuesta.status_code == 200
