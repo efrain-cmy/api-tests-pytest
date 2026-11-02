@@ -1,5 +1,7 @@
 # api-tests-pytest
 
+[![ci](https://github.com/efrain-cmy/api-tests-pytest/actions/workflows/tests.yml/badge.svg)](https://github.com/efrain-cmy/api-tests-pytest/actions/workflows/tests.yml)
+
 ## ¿Qué prueba este repo?
 
 Pruebas de API con pytest sobre el recurso `/posts` de
