@@ -56,6 +56,6 @@ def test_modificar_apuesta_devuelve_200_y_el_monto_nuevo(url_apuestas, api):
     assert ticket["monto"] == apuesta["monto"]
 
 @pytest.mark.smoke    
-def test_elimar_apuesta_devuelve_200(url_apuestas, api):
-    respuesta = api.delete(url_apuestas + "1", timeout = 10)
+def test_eliminar_apuesta_devuelve_200(url_apuestas, api):
+    respuesta = api.delete(url_apuestas + "1", timeout=10)
     assert respuesta.status_code == 200
