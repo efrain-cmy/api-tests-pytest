@@ -1,6 +1,6 @@
 # tests/test_saldo.py
 import pytest
-from src.first_funtion import descontar_apuesta
+from src.saldo import descontar_apuesta
 
 
 
