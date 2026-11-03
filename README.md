@@ -27,6 +27,8 @@ Correr solo smoke:
 
 ```bash
 pytest -m smoke
+
+pytest -m regression
 ```
 
 Generar el reporte HTML:
